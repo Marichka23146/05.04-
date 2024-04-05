@@ -1,0 +1,79 @@
+#:set color_txt_d "#3424D6"
+#:set color_btn_bg "#DAD4F7"
+#:set color_btn_bg_pr "#E0DEE6"
+#:set color_btn_bg "#FEFE33"
+#:set color_btn_a "#C21460"
+#:set color_btn_b "#34091C"
+
+
+<ButtonMenu@Button>:
+    size_hint_y: 0.3
+    front_size: "30sp"
+    color: color_txt_d
+    background_color: color_btn_bg
+    background_normal: color_btn_bg
+    on_release: self.background_color = color_btn_bg
+    background_down: color_btn_bg_pr
+    on_press: self.background_color = color_btn_bg_pr
+    font_name:'assets/Lemon-Regular.ttf'
+      
+
+<MenuScreen>:
+    canvas.before:
+        Color:
+            rgba: 1,1,0,1
+        Rectangle:
+            pos:self.pos
+            size:self.size
+    BoxLayout:
+        orientation: 'vertical'
+        padding: '20dp'
+        spacing: '20dp'
+        
+
+        Label: 
+            text:'Cosmo Adventure'
+            font_name: 'assets/Lemon-Regular.ttf'
+            font_size: '30dp'
+            color:'red'
+            size_hint_y: .2
+            
+        Image:
+            source: 'assets/images/6.png'
+            size_hint_y: .3
+            allow_streath: True 
+            
+            Widget: 
+                size_hint_y: 0.3
+                
+        ButtonMenu:
+            text: "Start"
+            on_press: root.manager.current = 'game'
+        ButtonMenu: 
+            text: "Lider Board"
+        ButtonMenu: 
+            text: "Settings"
+
+
+<GameScreen>:
+    BoxLayout:
+        orientation: 'vertical'
+        BoxLayout:
+            size_hint_y: 0.1
+            Label: 
+                text:'score: ' + str(root.points)
+                front_name: 'assets/Lemon-Regular.ttf'
+                font_size: '30dp'
+                color: color_a
+        FloatLayout:
+            size_hint_y: 0.8
+            Planet: 
+                id: planet 
+        BoxLayout:
+            size_hint_y: 0.1 
+<Planet>
+    allow_stretch: True
+    size_hint: None, None 
+    size: '200dp', '200dp'
+    center: self.parent.center
+    
